@@ -18,7 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('generate-shorten-link',[ShortLinkController::class,'index']);
-Route::post('generate-shorten-link', 'ShortLinkController@store')->name('generate.shorten.link.post');
+// Route::get('generate-shorten-link',[ShortLinkController::class,'index']);
+// Route::post('generate-shorten-link', 'ShortLinkController@store')->name('generate.shorten.link.post');
    
-Route::get('{code}', 'ShortLinkController@shortenLink')->name('shorten.link');
+// Route::get('{code}', 'ShortLinkController@shortenLink')->name('shorten.link');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
