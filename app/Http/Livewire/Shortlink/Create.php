@@ -23,7 +23,8 @@ class Create extends Component
    
         ShortLink::create($input);
 
-        session()->flash('message','Link has been generated');
+        session()->flash('link',$input['link']);
+        session()->flash('code',$input['code']);
     }
 
     public function render()

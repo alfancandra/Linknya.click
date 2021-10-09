@@ -4,7 +4,7 @@
         <div class="card-header pl-2 pr-2 mt-3">
             <form wire:submit.prevent="submit">
                 <div class="input-group mb-3">
-                    <input type="text" wire:model="link" class="form-control @error('link') is-invalid @enderror" placeholder="Enter URL"
+                    <input type="url" wire:model="link" class="form-control @error('link') is-invalid @enderror" placeholder="Enter URL"
                         aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">Generate Shorten Link</button>
@@ -15,12 +15,35 @@
         </div>
     </div>
 
-    @if(session()->has('message'))
+    @if(session()->has('link'))
     <div class="card">
         <div class="card-header pl-2 pr-2 mt-3">
-            {{ session('message') }}
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" value="{{ session('link') }}" disabled>
+                <input type="text" class="form-control ml-2 pl-2" id="copy-input" value="https://linknya.click/{{ session('code') }}" disabled>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" onclick="copyFunction()">Copy</button>
+                </div>
+            </div>
         </div>
     </div>
     @endif
-    
+    @section('scripts')
+    <script>
+        function copyFunction() {
+            /* Get the text field */
+            var copyText = document.getElementById("copy-input");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(copyText.value);
+
+            /* Alert the copied text */
+            alert("Copied the text: " + copyText.value);
+        }
+    </script>
+    @endsection
 </div>

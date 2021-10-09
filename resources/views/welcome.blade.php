@@ -562,15 +562,28 @@
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="{{ asset('js/') }}/popper.min.js"></script>
     <script src="{{ asset('js/') }}/bootstrap.min.js"></script>
     <script src="{{ asset('js/') }}/is.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="{{ asset('js/') }}/all.min.js"></script>
     <script src="{{ asset('js/') }}/theme.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&amp;display=swap" rel="stylesheet">
     @livewireScripts
+    <script>
+        function copyFunction() {
+            /* Get the text field */
+            var copyText = document.getElementById("copy-input");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text inside the text field */
+            navigator.clipboard.writeText(copyText.value);
+        }
+    </script>
 </body>
 
 </html>
