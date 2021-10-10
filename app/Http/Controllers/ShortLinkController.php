@@ -10,7 +10,12 @@ class ShortLinkController extends Controller
     public function shortenLink($code)
     {
         $find = ShortLink::where('code', $code)->first();
-   
-        return redirect($find->link);
+        
+        if($find){
+            return redirect($find->link);
+        }else{
+            return view('404');
+        }
+        
     }
 }

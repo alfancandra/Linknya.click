@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShortLinkController;
 use App\Http\Controllers\AutentikasiController;
+use App\Http\Controllers\SitemapXmlController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -24,7 +25,7 @@ Route::get('/', function () {
     }
 });
 
-
+Route::get('/sitemap.xml', [SitemapXmlController::class, 'index']);
 
 // Route::get('generate-shorten-link',[ShortLinkController::class,'index']);
 // Route::post('generate-shorten-link', 'ShortLinkController@store')->name('generate.shorten.link.post');
