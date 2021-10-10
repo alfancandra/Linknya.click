@@ -23,13 +23,7 @@
     <link rel="manifest" href="{{ asset('img/') }}/favicons/manifest.json">
     <meta name="msapplication-TileImage" content="{{ asset('img/') }}/favicons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
-    @livewireStyles
-
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    
 
 
     <!-- ===============================================-->
@@ -56,8 +50,13 @@
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#pricingTable">Pricing table</a></li>
               <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#help">Help</a></li>
             </ul>
-            <form class="ps-lg-5"><a class="btn btn-light order-1 order-lg-0" href="#!">login
+            @auth
+            <form class="ps-lg-5"><a class="btn btn-light order-1 order-lg-0" href="{{ route('logout') }}">logout
+            </a></form>
+            @else
+            <form class="ps-lg-5"><a class="btn btn-light order-1 order-lg-0" href="{{ route('login') }}">login
                 </a></form>
+            @endauth
           </div>
         </div>
       </nav>

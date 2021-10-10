@@ -7,10 +7,10 @@ use App\Models\ShortLink;
 
 class ShortLinkController extends Controller
 {
-    public function index()
+    public function shortenLink($code)
     {
-        $shortLinks = ShortLink::latest()->get();
+        $find = ShortLink::where('code', $code)->first();
    
-        return view('dashboard', compact('shortLinks'));
+        return redirect($find->link);
     }
 }

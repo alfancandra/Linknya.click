@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShortLinkController;
+use App\Http\Controllers\AutentikasiController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +17,24 @@ use App\Http\Controllers\ShortLinkController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()){
+        return redirect('/dashboard');
+    }else{
+        return view('welcome');
+    }
 });
+
+
 
 // Route::get('generate-shorten-link',[ShortLinkController::class,'index']);
 // Route::post('generate-shorten-link', 'ShortLinkController@store')->name('generate.shorten.link.post');
    
-// Route::get('{code}', 'ShortLinkController@shortenLink')->name('shorten.link');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/logout',[AutentikasiController::class,'logout'])->name('logout');
+
+Route::get('{code}', [ShortLinkController::class,'shortenLink'])->name('shorten.link');
