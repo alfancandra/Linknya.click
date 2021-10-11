@@ -23,11 +23,34 @@
                 <input type="text" class="form-control ml-2 pl-2" id="copy-input" value="https://linknya.click/{{ session('code') }}" disabled>
                 <div class="input-group-append">
                     <button class="btn btn-primary" onclick="copyFunction()">Copy</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        QR Code
+                      </button>
                 </div>
             </div>
         </div>
     </div>
     @endif
+
+    
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">QR Code</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                {!! QrCode::size(300)->generate("https://linknya.click/".session('code')); !!}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save QR</button>
+            </div>
+          </div>
+        </div>
+    </div>
 
     @auth
         @livewire('shortlink.index')
